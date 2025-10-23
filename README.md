@@ -1,6 +1,6 @@
 # Camera Capture Widget
 
-Capture images directly from your device camera in Odoo by adding **camera capture** widget to your image field.
+Capture images directly from your device camera in Odoo by adding **camera_capture** widget to your image field.
 
 ![Camera Capture Widget](static/description/images/image1.png)
 
