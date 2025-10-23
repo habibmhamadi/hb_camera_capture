@@ -1,0 +1,121 @@
+.o_field_camera_capture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    min-height: 300px;
+
+    .camera_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+
+        .camera_settings {
+            width: 100%;
+            max-width: 480px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+            }
+
+            .camera_selection,
+            .aspect_ratio_selection {
+                .form-label {
+                    font-weight: 600;
+                    margin-bottom: 8px;
+                    color: #495057;
+                    display: block;
+
+                    i {
+                        margin-right: 5px;
+                        color: #007bff;
+                    }
+                }
+
+                .form-select {
+                    padding: 8px 12px;
+                    font-size: 14px;
+                    border-radius: 6px;
+                    border: 1px solid #ced4da;
+
+                    &:focus {
+                        border-color: #007bff;
+                        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                    }
+
+                    &:disabled {
+                        background-color: #e9ecef;
+                        cursor: not-allowed;
+                    }
+                }
+
+                .form-text {
+                    display: block;
+                    margin-top: 4px;
+                    font-size: 12px;
+                }
+            }
+
+            .camera_selection {
+                &.mb-3:only-child {
+                    grid-column: 1 / -1;
+                }
+            }
+        }
+
+        .video_wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .camera_video {
+            display: block;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .camera_controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+
+    .captured_image_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+
+        .captured_image {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .camera_controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+    }
+}
+

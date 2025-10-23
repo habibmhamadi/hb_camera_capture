@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="hb_camera_capture.CameraCaptureField">
+        <div class="o_field_camera_capture">
+            <t t-if="state.error">
+                <div class="alert alert-danger" role="alert">
+                    <i class="fa fa-exclamation-triangle"/> <t t-esc="state.error"/>
+                </div>
+            </t>
+            
+            <t t-if="state.isLoadingDevices">
+                <div class="text-center p-4">
+                    <i class="fa fa-spinner fa-spin fa-2x"/>
+                    <p class="mt-2">Loading camera devices...</p>
+                </div>
+            </t>
+            
+            <t t-if="!state.hasCapture and !imageUrl and !state.isLoadingDevices">
+                <div class="camera_container">
+                    <div class="camera_settings">
+                        <!-- Camera Selection -->
+                        <div class="camera_selection mb-3" t-if="state.devices.length > 1">
+                            <label class="form-label">
+                                <i class="fa fa-video-camera"/> Select Camera:
+                            </label>
+                            <select 
+                                class="form-select" 
+                                t-on-change="(ev) => this.onDeviceChange(ev)"
+                                t-att-disabled="state.isCameraActive"
+                            >
+                                <t t-foreach="state.devices" t-as="device" t-key="device.id">
+                                    <option 
+                                        t-att-value="device.id"
+                                        t-att-selected="device.id === state.selectedDeviceId"
+                                    >
+                                        <t t-esc="device.label"/>
+                                    </option>
+                                </t>
+                            </select>
+                            <small class="form-text text-muted" t-if="state.isCameraActive">
+                                Stop camera to change device
+                            </small>
+                        </div>
+
+                        <!-- Aspect Ratio Selection -->
+                        <div class="aspect_ratio_selection mb-3">
+                            <label class="form-label">
+                                <i class="fa fa-expand"/> Aspect Ratio:
+                            </label>
+                            <select 
+                                class="form-select" 
+                                t-on-change="(ev) => this.onAspectRatioChange(ev)"
+                            >
+                                <t t-foreach="aspectRatios" t-as="ratio" t-key="ratio.value">
+                                    <option 
+                                        t-att-value="ratio.value"
+                                        t-att-selected="ratio.value === state.aspectRatio"
+                                    >
+                                        <t t-esc="ratio.label"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="video_wrapper" t-ref="videoContainer">
+                        <video 
+                            t-ref="videoElement" 
+                            autoplay="autoplay" 
+                            class="camera_video"
+                            t-att-style="state.isCameraActive ? '' : 'display: none;'"
+                        />
+                    </div>
+                    <canvas t-ref="canvasElement" style="display: none;"/>
+                    
+                    <div class="camera_controls mt-3">
+                        <button 
+                            t-if="!state.isCameraActive" 
+                            class="btn btn-primary" 
+                            type="button"
+                            t-on-click="() => this.startCamera()"
+                            t-att-disabled="state.devices.length === 0"
+                        >
+                            <i class="fa fa-camera"/> Start Camera
+                        </button>
+                        
+                        <t t-if="state.isCameraActive">
+                            <button 
+                                class="btn btn-success me-2" 
+                                type="button"
+                                t-on-click="() => this.captureImage()"
+                            >
+                                <i class="fa fa-camera"/> Capture
+                            </button>
+                            <button 
+                                class="btn btn-secondary" 
+                                type="button"
+                                t-on-click="() => this.stopCamera()"
+                            >
+                                <i class="fa fa-stop"/> Stop Camera
+                            </button>
+                        </t>
+                    </div>
+                </div>
+            </t>
+            
+            <t t-if="state.hasCapture or imageUrl">
+                <div class="captured_image_container">
+                    <img 
+                        t-att-src="imageUrl" 
+                        alt="Captured Image"
+                        class="captured_image"
+                    />
+                    <div class="camera_controls mt-3">
+                        <button 
+                            class="btn btn-warning" 
+                            type="button"
+                            t-on-click="() => this.retakeImage()"
+                        >
+                            <i class="fa fa-refresh"/> Retake
+                        </button>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>
+
