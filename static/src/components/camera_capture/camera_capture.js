@@ -239,7 +239,6 @@ export const cameraCaptureField = {
     component: CameraCaptureField,
     supportedTypes: ["binary"],
     extractProps: ({ attrs, field }) => ({
-        placeholder: attrs.placeholder,
         readonly: attrs.readonly,
     }),
 };

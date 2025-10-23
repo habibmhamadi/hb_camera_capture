@@ -28,7 +28,9 @@
                                 t-on-change="(ev) => this.onDeviceChange(ev)"
                                 t-att-disabled="state.isCameraActive"
                             >
-                                <t t-foreach="state.devices" t-as="device" t-key="device.id">
+                                <t t-set="c" t-value="1"/>
+                                <t t-foreach="state.devices" t-as="device" t-key="c">
+                                    <t t-set="c" t-value="c+1"/>
                                     <option 
                                         t-att-value="device.id"
                                         t-att-selected="device.id === state.selectedDeviceId"
