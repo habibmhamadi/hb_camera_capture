@@ -12,11 +12,10 @@
     'version': '18.0.1.0.0',
     'license': 'LGPL-3',
 
-    # always loaded
+    # Uncomment the following lines and models.py to enable demo 
     'data': [
-        'security/ir.model.access.csv',
-        'views/views.xml',
-        'wizards/camera_capture_wizard.xml',
+        # 'security/ir.model.access.csv',
+        # 'views/views.xml',
     ],
     'assets': {
         'web.assets_backend': [
