@@ -9,7 +9,7 @@
     'website': "https://github.com/habibmhamadi/hb_camera_capture",
 
     'category': 'Technical',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'license': 'LGPL-3',
 
     # Uncomment the following lines and models.py to enable demo 
