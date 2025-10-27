@@ -4,16 +4,16 @@
     <record id="example_model_action" model="ir.actions.act_window">
         <field name="name">Example Model</field>
         <field name="res_model">example.model</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <record id="example_model_view_tree" model="ir.ui.view">
         <field name="name">example_model.view.tree</field>
         <field name="model">example.model</field>
         <field name="arch" type="xml">
-            <list string="">
+            <tree string="">
                 <field name="name"/>
-            </list>
+            </tree>
         </field>
     </record>
 
@@ -44,9 +44,7 @@
         <field name="arch" type="xml">
             <form string="">
                 <sheet>
-                    <group>
-                        <field name="image" widget="camera_capture" nolabel="1"/>
-                    </group>
+                    <field name="image" widget="camera_capture" nolabel="1"/>
                     <footer>
                         <button name="action_confirm" type="object" class="btn btn-primary" string="Confirm"/>
                         <button special="cancel" string="Cancel"/>
